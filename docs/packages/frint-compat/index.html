@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>frint-compat | Frint</title>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="container">
+        <div class="nav-left">
+  <a href="/" class="nav-item brand">
+    <img alt="Frint" class="dark" src="/img/frint-logo-7a7a7a.png" />
+    <img alt="Frint" class="light" src="/img/frint-logo-fff.png" />
+  </a>
+
+  <a href="/docs" class="nav-item is-tab">
+    Documentation
+  </a>
+
+  <a href="/guides" class="nav-item is-tab">
+    Guides
+  </a>
+
+  <a href="/repl" class="nav-item is-tab">
+    REPL
+  </a>
+
+  <a href="/about" class="nav-item is-tab">
+    About
+  </a>
+</div>
+
+<div class="nav-right">
+  <div class="field nav-item">
+    <p class="control has-icon">
+      <input id="doc-search-text-box" class="input" type="text" placeholder="Search...">
+      <span class="icon is-small">
+        <i class="fa fa-search"></i>
+      </span>
+    </p>
+  </div>
+</div>
+
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <div class="menu-container docs">
+  <aside class="menu docs">
+    <p class="menu-label">
+      Quickstart
+    </p>
+
+    <ul class="menu-list">
+      <li><a href="/guides/hello-world">Hello World</a></li>
+    </ul>
+
+    <p class="menu-label">
+      Packages
+    </p>
+
+    <ul class="menu-list">
+      <li><a href="/docs/packages/frint">frint</a></li>
+      <li><a href="/docs/packages/frint-model">frint-model</a></li>
+      <li><a href="/docs/packages/frint-store">frint-store</a></li>
+      <li><a href="/docs/packages/frint-react">frint-react</a></li>
+      <li><a href="/docs/packages/frint-react-server">frint-react-server</a></li>
+      <li><a href="/docs/packages/frint-router">frint-router</a></li>
+      <li><a href="/docs/packages/frint-router-react">frint-router-react</a></li>
+      <li><a href="/docs/packages/frint-test-utils">frint-test-utils</a></li>
+      <li><a href="/docs/packages/frint-compat">frint-compat</a></li>
+      <li><a href="/docs/packages/frint-cli">frint-cli</a></li>
+    </ul>
+
+    <p class="menu-label">
+      Migration
+    </p>
+
+    <ul class="menu-list">
+      <li><a href="/docs/migration/v1">Migrating to v1.x</a></li>
+      <li><a href="/docs/migration/v2">Migrating to v2.x</a></li>
+    </ul>
+
+    <p class="menu-label">
+      Contributing
+    </p>
+
+    <ul class="menu-list">
+      <li><a href="/docs/contributing/maintainers">Maintainers guide</a></li>
+    </ul>
+
+    <p class="menu-label">
+      Project
+    </p>
+
+    <ul class="menu-list">
+      <li><a href="/docs/changelog">Changelog</a></li>
+    </ul>
+  </aside>
+</div>
+
+          </div>
+
+          <div class="column content">
+            <h1 id="frint-compat">frint-compat</h1>
+<p><a href="https://www.npmjs.com/package/frint-compat"><img src="https://img.shields.io/npm/v/frint-compat.svg" alt="npm"></a></p>
+<blockquote>
+<p>Backwards compatibility package for Frint</p>
+</blockquote>
+<p>Everything that you see here has been deprecated and should not be intentionally used.</p>
+<!-- MarkdownTOC autolink=true bracket=round -->
+<ul>
+<li><a href="#guide">Guide</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+</li>
+<li><a href="#api">API</a><ul>
+<li><a href="#createcomponent">createComponent</a></li>
+<li><a href="#h">h</a></li>
+<li><a href="#proptypes">PropTypes</a></li>
+<li><a href="#createservice">createService</a></li>
+<li><a href="#createfactory">createFactory</a></li>
+<li><a href="#createapp">createApp</a></li>
+<li><a href="#app">app</a></li>
+<li><a href="#maptoprops">mapToProps</a></li>
+<li><a href="#store">Store</a></li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+<hr>
+<h1 id="guide">Guide</h1>
+<h2 id="installation">Installation</h2>
+<p>With <a href="https://www.npmjs.com/">npm</a>:</p>
+<pre><code>$ npm install --save frint-compat
+</code></pre><p>Via <a href="https://unpkg.com">unpkg</a> CDN:</p>
+<pre><code class="lang-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.0/Rx.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/prop-types@15.5.10/prop-types.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/frint@latest/dist/frint.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/frint-model@latest/dist/frint-model.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/frint-react@latest/dist/frint-react.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/frint-store@latest/dist/frint-store.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/frint-compat@latest/dist/frint-compat.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // available as `window.Frint` (now backwards compatible)
+&lt;/script&gt;
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Load it after you have loaded all other packages:</p>
+<pre><code class="lang-js">require(&#39;frint-compat&#39;);
+</code></pre>
+<p>Doing so would mutate other packages to keep them backwards compatible.</p>
+<h1 id="api">API</h1>
+<h2 id="createcomponent">createComponent</h2>
+<blockquote>
+<p>createComponent(options)</p>
+</blockquote>
+<p>Creates a new Component, using React internally.</p>
+<h3 id="arguments">Arguments</h3>
+<ol>
+<li><code>options</code> (<code>Object</code>):<ul>
+<li><code>render</code> (<code>Function</code> [required]): Function returning JSX.</li>
+<li><code>beforeMount</code> (<code>Function</code>): Called before mounting the Component.</li>
+<li><code>afterMount</code> (<code>Function</code>): Called after mounting the Component.</li>
+<li><code>beforeUnmount</code> (<code>Function</code>): Called right before unmounting the Component.</li>
+</ul>
+</li>
+</ol>
+<h3 id="returns">Returns</h3>
+<p><code>Component</code>: React Component.</p>
+<h2 id="h">h</h2>
+<blockquote>
+<p>h(type, props, children)</p>
+</blockquote>
+<p>The hyperscript wrapping React&#39;s <a href="https://facebook.github.io/react/docs/react-api.html#createelement"><code>React.createElement</code></a>. This function is expected to be in the scope wherever JSX is used.</p>
+<h2 id="proptypes">PropTypes</h2>
+<blockquote>
+<p>PropTypes</p>
+</blockquote>
+<p>For <a href="https://facebook.github.io/react/docs/typechecking-with-proptypes.html">typechecking</a> Component&#39;s props.</p>
+<h2 id="createservice">createService</h2>
+<blockquote>
+<p>createService(options)</p>
+</blockquote>
+<h3 id="arguments">Arguments</h3>
+<ol>
+<li><code>options</code> (<code>Object</code>): Methods for your class.<ul>
+<li><code>options.initialize</code> (<code>Function</code>): Treated as class constructor.</li>
+</ul>
+</li>
+</ol>
+<h3 id="returns">Returns</h3>
+<p><code>Function</code>: ES6-compatible class.</p>
+<h2 id="createfactory">createFactory</h2>
+<blockquote>
+<p>createFactory(options)</p>
+</blockquote>
+<h3 id="arguments">Arguments</h3>
+<ol>
+<li><code>options</code> (<code>Object</code>): Methods for your class.<ul>
+<li><code>options.initialize</code> (<code>Function</code>): Treated as class constructor.</li>
+</ul>
+</li>
+</ol>
+<h3 id="returns">Returns</h3>
+<p><code>Function</code>: ES6-compatible class.</p>
+<h2 id="createapp">createApp</h2>
+<blockquote>
+<p>createApp(options)</p>
+</blockquote>
+<h3 id="arguments">Arguments</h3>
+<ol>
+<li><code>options</code> (<code>Object</code>):<ul>
+<li><code>options.component</code> (<code>Function</code>): The root Component of your App.</li>
+<li><code>options.services</code> (<code>Object</code>): Key/value pairs of Service classes.</li>
+<li><code>options.factories</code> (<code>Object</code>): Key/value pairs of Factory classes.</li>
+<li><code>options.models</code> (<code>Object</code>): Key/value pairs of Model classes.</li>
+<li><code>options.modelAttributes</code> (<code>Object</code>): Key/value pairs of Model attributes.</li>
+<li><code>options.store</code> (<code>Object</code>): The Store instance.</li>
+<li><code>options.reducer</code> (<code>Function</code>): Root reducer for your Store.</li>
+<li><code>options.initialState</code> (<code>Object</code>): Initial state for your Store.</li>
+<li><code>beforeMount</code> (<code>Function</code>): Called before mounting the App.</li>
+<li><code>afterMount</code> (<code>Function</code>): Called after mounting the App.</li>
+<li><code>beforeUnmount</code> (<code>Function</code>): Called right before unmounting the App.</li>
+</ul>
+</li>
+</ol>
+<h3 id="returns">Returns</h3>
+<p><code>App</code>: App class.</p>
+<h2 id="app">app</h2>
+<blockquote>
+<p>new App()</p>
+</blockquote>
+<p>App instance methods:</p>
+<h3 id="app-getrootapp">app.getRootApp</h3>
+<blockquote>
+<p>app.getRootApp()</p>
+</blockquote>
+<p>Extends the native <code>getRootApp()</code>, and looks for <code>window.app</code> first, and then returns it if exists.</p>
+<h4 id="returns">Returns</h4>
+<p><code>App</code>: The root app&#39;s instance.</p>
+<h3 id="app-getstate-">app.getState$</h3>
+<blockquote>
+<p>app.getState$()</p>
+</blockquote>
+<h4 id="returns">Returns</h4>
+<p><code>Observable</code>: State of your App&#39;s store.</p>
+<h3 id="app-dispatch">app.dispatch</h3>
+<blockquote>
+<p>app.dispatch(action)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>action</code> (<code>Object</code>|<code>Function</code>): Action payload to dispatch to your App&#39;s store.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>void</code></p>
+<h3 id="app-render">app.render</h3>
+<blockquote>
+<p>app.render()</p>
+</blockquote>
+<h4 id="returns">Returns</h4>
+<p><code>Function</code>: The root component.</p>
+<h3 id="app-getstore">app.getStore</h3>
+<blockquote>
+<p>app.getStore()</p>
+</blockquote>
+<h4 id="returns">Returns</h4>
+<p><code>Store</code>: The app&#39;s store instance.</p>
+<h3 id="app-getservice">app.getService</h3>
+<blockquote>
+<p>app.getService(name)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>name</code> (<code>String</code>): The name of the Service.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>Object</code>: The service instance.</p>
+<h3 id="app-getfactory">app.getFactory</h3>
+<blockquote>
+<p>app.getFactory(name)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>name</code> (<code>String</code>): The name of the Factory.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>Object</code>: The factory instance.</p>
+<h3 id="app-getmodel">app.getModel</h3>
+<blockquote>
+<p>app.getModel(name)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>name</code> (<code>String</code>): The name of the Model.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>Object</code>: The model instance.</p>
+<h3 id="app-setregion">app.setRegion</h3>
+<blockquote>
+<p>app.setRegion(name)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>name</code> (<code>String</code>): The name of the region.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>void</code>.</p>
+<h3 id="app-setregions">app.setRegions</h3>
+<blockquote>
+<p>app.setRegions(names)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>names</code> (<code>Array</code>): Array of region names.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>void</code>.</p>
+<h3 id="app-getwidgets">app.getWidgets</h3>
+<blockquote>
+<p>app.getWidgets(regionName = null)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regionName</code> (<code>String</code> [optional]): Optionally filter apps by their region.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>Array</code>: of app instances.</p>
+<h3 id="app-readstatefrom">app.readStateFrom</h3>
+<blockquote>
+<p>app.readStateFrom(names)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>names</code> (<code>Array</code>): Array of other App names that you wish to read state from.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>void</code>.</p>
+<h2 id="maptoprops">mapToProps</h2>
+<blockquote>
+<p>mapToProps(options)(Component)</p>
+</blockquote>
+<p>Maps data coming from various sources into Component&#39;s props.</p>
+<h3 id="arguments">Arguments</h3>
+<ol>
+<li><code>options</code> (<code>Object</code>):<ul>
+<li><code>options.state</code> (<code>Function</code>): Accepts <code>state</code> (<code>Object</code>) as argument, and returns object to map as props.</li>
+<li><code>options.dispatch</code> (<code>Object</code>): Dispatchable action creators, keyed by prop names</li>
+<li><code>app</code> (<code>Function</code>): Accepts <code>app</code> (<code>App</code>) as argument, and returns object to map as props.</li>
+<li><code>shared</code> (<code>Function</code>): Accepts <code>shared</code> (<code>Object</code>) state as argument, and returns object to map as props.</li>
+<li><code>services</code> (<code>Object</code>): Object keyed by prop names, and service names as values.</li>
+<li><code>factories</code> (<code>Object</code>): Object keyed by prop names, and factory names as values.</li>
+<li><code>models</code> (<code>Object</code>): Object keyed by prop names, and model names as values.</li>
+<li><code>observe</code> (<code>Function</code>): Accepts <code>app</code> (<code>App</code>) as an argument, and returns an <code>Observable</code> emitting object to be mapped as props.</li>
+</ul>
+</li>
+</ol>
+<h3 id="returns">Returns</h3>
+<p><code>Function</code>: That can be alled with the target Component.</p>
+<h2 id="store">Store</h2>
+<blockquote>
+<p>new Store()</p>
+</blockquote>
+<h3 id="store-subscribe">store.subscribe</h3>
+<blockquote>
+<p>store.subscribe(fn)</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> (<code>Function</code>): Listener function, that accepts the latest state as argument.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><code>Function</code>: Call the returned function to unsubscribe from the listener.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>FrintJS</strong> by <a href="https://travix.com">Travix International B.V.</a>.
+        The source code is licensed under
+        <a href="https://github.com/Travix-International/frint/blob/master/LICENSE">MIT</a>.
+      </p>
+      <p>
+        <a class="icon" href="https://github.com/Travix-International/frint">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+    <style>
+  .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism-solarizedlight.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+<script src="/js/site.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '897a7279c47670a5c4b474ee84350387',
+  indexName: 'frint.js',
+  inputSelector: '#doc-search-text-box',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93673400-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
